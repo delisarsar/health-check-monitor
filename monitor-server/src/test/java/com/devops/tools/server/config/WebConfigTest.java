@@ -55,7 +55,7 @@ public class WebConfigTest {
         when(corsRegistration.allowedOrigins("*")).thenReturn(corsRegistration);
         when(corsRegistration.allowedHeaders("*")).thenReturn(corsRegistration);
         when(corsRegistration.allowedMethods("*")).thenReturn(corsRegistration);
-        when(corsRegistration.exposedHeaders("*")).thenReturn(corsRegistration);
+        when(corsRegistration.exposedHeaders("Access-Control-Allow-Origin")).thenReturn(corsRegistration);
 
         this.webConfig.addCorsMappings(corsRegistry);
 
@@ -63,6 +63,6 @@ public class WebConfigTest {
         verify(corsRegistration).allowedMethods("*");
         verify(corsRegistration).allowedHeaders("*");
         verify(corsRegistration).allowedMethods("*");
-        verify(corsRegistration).exposedHeaders("*");
+        verify(corsRegistration).exposedHeaders("Access-Control-Allow-Origin");
     }
 }
