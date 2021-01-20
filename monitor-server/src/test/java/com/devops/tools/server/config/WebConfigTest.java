@@ -4,10 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistration;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.*;
 
 import static org.mockito.Mockito.*;
 
@@ -47,5 +44,25 @@ public class WebConfigTest {
 
         verify(handlerRegistration).addResourceLocations(WebConfig.CLASSPATH_RESOURCE_LOCATIONS);
         verify(handlerRegistration).addResourceLocations("classpath:/static/vendor/");
+    }
+
+    @Test
+    public void testAddCorsMappings() {
+        final CorsRegistry corsRegistry = mock(CorsRegistry.class);
+        final CorsRegistration corsRegistration = mock(CorsRegistration.class);
+
+        when(corsRegistry.addMapping("/**")).thenReturn(corsRegistration);
+        when(corsRegistration.allowedOrigins("*")).thenReturn(corsRegistration);
+        when(corsRegistration.allowedHeaders("*")).thenReturn(corsRegistration);
+        when(corsRegistration.allowedMethods("*")).thenReturn(corsRegistration);
+        when(corsRegistration.exposedHeaders("*")).thenReturn(corsRegistration);
+
+        this.webConfig.addCorsMappings(corsRegistry);
+
+        verify(corsRegistry).addMapping("/**");
+        verify(corsRegistration).allowedMethods("*");
+        verify(corsRegistration).allowedHeaders("*");
+        verify(corsRegistration).allowedMethods("*");
+        verify(corsRegistration).exposedHeaders("*");
     }
 }

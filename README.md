@@ -3,9 +3,6 @@
 ![Build Status](https://travis-ci.com/delisarsar/health-check-monitor.svg?branch=main)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![codecov](https://codecov.io/gh/delisarsar/health-check-monitor/branch/main/graph/badge.svg?token=RHL8XYZ8AA)](https://codecov.io/gh/delisarsar/health-check-monitor)
-![Build and Deploy to IBM Kubernetes Service](https://github.com/delisarsar/health-check-monitor/workflows/Build%20and%20Deploy%20to%20IKS/badge.svg)
-
-[Live Demo](https://jahia.flexudy.com)
 
 This reactor is comprised of the following projects:
 
