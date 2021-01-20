@@ -50,7 +50,7 @@ public class ApplicationQuery implements GraphQLQueryResolver {
         log.info("Attempting to retrieve all applications with name like {}", name);
         try {
             if (name.isBlank()) return getApplications(DEFAULT_MAX_SIZE);
-            return asDtoList(applicationRepository.findAllByNameContaining(name));
+            return asDtoList(applicationRepository.findByNameContainingIgnoreCase(name));
         } catch (DataAccessException ex) {
             log.error("Unable to retrieve applications with name like {}", name, ex);
             throw new InternalServerException();

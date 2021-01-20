@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ApplicationRepository extends JpaRepository<JpaApplication, Long> {
     Optional<JpaApplication> findByName(String name);
-    List<JpaApplication> findAllByNameContaining(String name);
+    List<JpaApplication> findByNameContainingIgnoreCase(String name);
 }

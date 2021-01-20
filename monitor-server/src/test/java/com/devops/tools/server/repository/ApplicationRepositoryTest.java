@@ -41,7 +41,7 @@ public class ApplicationRepositoryTest {
         final String originalAppName = expectedApplication.getName();
         final String partialName = originalAppName.substring(0, 1);
 
-        final List<JpaApplication> actualApplication = repository.findAllByNameContaining(partialName);
+        final List<JpaApplication> actualApplication = repository.findByNameContainingIgnoreCase(partialName);
         assertThat(actualApplication).hasSize(1);
 
         assertThat(actualApplication.get(0)).isEqualTo(expectedApplication);

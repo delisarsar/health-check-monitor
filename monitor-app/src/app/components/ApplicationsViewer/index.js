@@ -3,10 +3,18 @@ import { useDebounce } from "use-debounce";
 import { useQuery } from "@apollo/react-hooks";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { useIntl } from "react-intl";
 import isEmpty from "lodash/isEmpty";
 import ApplicationCard from "./components/ApplicationCard";
 import ContentLoader from "../ContentLoader";
+import { APPLICATION_NAME_LABEL } from "../../constants";
 import {
+  EDIT_PAGE_ROUTE,
+  EDIT_PAGE_APPLICATION_ID_PARAM,
+} from "../../pages/constants";
+import {
+  NO_APPLICATION_FOUND_LABEL,
+  APPLICATIONS_TITLE_LABEL,
   CREATE_APPLICATION_LABEL,
   GET_APPLICATIONS_LIKE_NAME,
 } from "./constants";
@@ -15,21 +23,20 @@ import { useHistory } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 
 const ApplicationsViewer = () => {
+  const intl = useIntl();
   const classes = useStyles();
   const history = useHistory();
   const [applicationName, setApplicationName] = useState("");
   const [searchValue] = useDebounce(applicationName, 500);
 
-  useEffect(() => {
-    refetch();
-  }, [history]);
-
   const redirectToCreateAppPage = () => {
-    history.push("/edit");
+    history.push(EDIT_PAGE_ROUTE);
   };
 
   const redirectToEditAppPage = (applicationId) => {
-    history.push(`/edit?applicationId=${applicationId}`);
+    history.push(
+      `${EDIT_PAGE_ROUTE}?${EDIT_PAGE_APPLICATION_ID_PARAM}=${applicationId}`
+    );
   };
 
   const { loading, error, data, refetch } = useQuery(
@@ -38,6 +45,10 @@ const ApplicationsViewer = () => {
       variables: { name: searchValue },
     }
   );
+
+  useEffect(() => {
+    refetch();
+  }, [history, refetch]);
 
   return (
     <ContentLoader loading={loading} error={error}>
@@ -54,12 +65,15 @@ const ApplicationsViewer = () => {
           </Grid>
           <Grid item>
             <TextField
-              label="Application Name"
+              label={APPLICATION_NAME_LABEL}
               variant="outlined"
               size="small"
               value={applicationName}
               onChange={(e) => setApplicationName(e.target.value)}
-              placeholder={"Filter by name"}
+              placeholder={intl.formatMessage({
+                id: "overview.filter-by-name",
+                defaultMessage: "Filter by name",
+              })}
             />
           </Grid>
         </Grid>
@@ -69,12 +83,12 @@ const ApplicationsViewer = () => {
             className={classes.resultsTitle}
             variant="h5"
           >
-            No application found
+            {NO_APPLICATION_FOUND_LABEL}
           </Typography>
         ) : (
           <>
             <Typography className={classes.resultsTitle} variant="h5">
-              Applications (Health Checks)
+              {APPLICATIONS_TITLE_LABEL}
             </Typography>
             <Grid container spacing={2} className={classes.appsGrid}>
               {data.getApplicationsLikeName.map((app) => (

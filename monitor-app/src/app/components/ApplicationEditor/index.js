@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
 import isNil from "lodash/isNil";
+import { useIntl } from "react-intl";
 import isEmpty from "lodash/isEmpty";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -10,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import ContentLoader from "../ContentLoader";
 import useStyles from "./styles";
+import { APPLICATION_NAME_LABEL } from "../../constants";
 import {
   APP_NAME_CHARACTER_LIMIT,
   APP_ENDPOINT_CHARACTER_LIMIT,
@@ -17,10 +19,15 @@ import {
   CREATE_APPLICATION,
   DELETE_APPLICATION,
   UPDATE_APPLICATION,
+  CREATE_LABEL,
+  SAVE_LABEL,
+  HEALTH_CHECK_LABEL,
+  DELETE_LABEL,
+  getModalStyle,
 } from "./constants";
-import { getModalStyle } from "./utils";
 
 const ApplicationEditor = ({ appId }) => {
+  const intl = useIntl();
   const classes = useStyles();
   const history = useHistory();
   const [appInfo, setAppInfo] = useState({
@@ -34,21 +41,25 @@ const ApplicationEditor = ({ appId }) => {
     createApplication,
     { createApplicationLoading, createApplicationError },
   ] = useMutation(CREATE_APPLICATION, {
-    onCompleted: (data) => redirectToHomePage(),
+    onCompleted: () => redirectToHomePage(),
+    onError: () =>
+      console.log("Existing application name conflict/Invalid endpoint format"), //TODO Have a nicer alert view
   });
 
   const [
     deleteApplication,
     { deleteApplicationLoading, deleteApplicationError },
   ] = useMutation(DELETE_APPLICATION, {
-    onCompleted: (data) => redirectToHomePage(),
+    onCompleted: () => redirectToHomePage(),
+    onError: () => console.log("Error occured"), //TODO Have a nicer alert view
   });
 
   const [
     updateApplication,
     { updateApplicationLoading, updateApplicationError },
   ] = useMutation(UPDATE_APPLICATION, {
-    onCompleted: (data) => redirectToHomePage(),
+    onCompleted: () => redirectToHomePage(),
+    onError: () => console.log("Invalid endpoint format"), //TODO Have a nicer alert view
   });
 
   const [
@@ -68,6 +79,7 @@ const ApplicationEditor = ({ appId }) => {
     if (appId) {
       getApplicationById({ variables: { appId } });
     }
+    // eslint-disable-next-line
   }, [appId]);
 
   useEffect(() => {
@@ -98,7 +110,7 @@ const ApplicationEditor = ({ appId }) => {
       <div style={modalStyle} className={classes.paper}>
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
-            label="Application Name"
+            label={APPLICATION_NAME_LABEL}
             variant="outlined"
             size="small"
             fullWidth
@@ -107,11 +119,14 @@ const ApplicationEditor = ({ appId }) => {
             onChange={(e) =>
               setAppInfo({ ...appInfo, appName: e.target.value })
             }
-            placeholder={"Name your applicaion"}
+            placeholder={intl.formatMessage({
+              id: "overview.name-your-app",
+              defaultMessage: "Name your application",
+            })}
           />
           <Box pt={2}>
             <TextField
-              label="Health Check"
+              label={HEALTH_CHECK_LABEL}
               variant="outlined"
               size="small"
               fullWidth
@@ -120,7 +135,10 @@ const ApplicationEditor = ({ appId }) => {
               onChange={(e) =>
                 setAppInfo({ ...appInfo, endpoint: e.target.value })
               }
-              placeholder={"Health check endpoint"}
+              placeholder={intl.formatMessage({
+                id: "overview.health-check-endpoint",
+                defaultMessage: "Health Check Endpoint URL",
+              })}
             />
           </Box>
           <Grid container spacing={3} className={classes.actionButtonsGrid}>
@@ -148,7 +166,7 @@ const ApplicationEditor = ({ appId }) => {
                 }
                 disabled={isEmpty(appInfo.appName) || isEmpty(appInfo.endpoint)}
               >
-                {isNil(appInfo.appId) ? "Create" : "Save"}
+                {isNil(appInfo.appId) ? CREATE_LABEL : SAVE_LABEL}
               </Button>
             </Grid>
             {!isNil(appInfo.appId) && (
@@ -165,7 +183,7 @@ const ApplicationEditor = ({ appId }) => {
                   }
                   className={classes.actionButton}
                 >
-                  Delete
+                  {DELETE_LABEL}
                 </Button>
               </Grid>
             )}
@@ -177,7 +195,7 @@ const ApplicationEditor = ({ appId }) => {
 };
 
 ApplicationEditor.propTypes = {
-  appId: PropTypes.number,
+  appId: PropTypes.string,
 };
 
 ApplicationEditor.defaultPropTypes = {

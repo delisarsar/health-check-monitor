@@ -1,7 +1,14 @@
 {
-  "header.menu.start": "Start",
-  "header.menu.summary": "Summary",
-  "header.menu.quiz": "Quiz",
-  "header.menu.multiple_choice": "Multiple Choice",
-  "header.menu.flash_cards": "Flashcards"
+  "overview.create_button": "+ Create",
+  "overview.no-application-found": "No application found",
+  "overview.application-name": "Application Name",
+  "overview.filter-by-name": "Filter by name",
+  "overview.applications": "Applications (Health Checks)",
+  "overview.name-your-app": "Name your application",
+  "overview.edit": "Edit",
+  "overview.endpoint": "Endpoint",
+  "overview.health-check": "Health Check",
+  "overview.health-check-endpoint": "Health Check Endpoint",
+  "overview.save": "Save",
+  "overview.delete": "Delete"
 }

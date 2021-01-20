@@ -25,6 +25,7 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-html-reporter": "^3.3.0",
     "lodash": "^4.17.20",
     "react": "^17.0.1",
@@ -63,5 +64,9 @@
   "proxy": "http://localhost:8080",
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7"
+  },
+  "jest-html-reporter": {
+    "pageTitle": "Jest Report",
+    "outputPath": "./reports/jest-html-report.html"
   }
 }

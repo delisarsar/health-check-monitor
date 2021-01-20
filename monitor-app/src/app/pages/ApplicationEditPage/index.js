@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import ApplicationEditor from "../../components/ApplicationEditor";
+import { EDIT_PAGE_APPLICATION_ID_PARAM } from "../../pages/constants";
 import PageWrapper from "../PageWrapper";
 
 const ApplicationEditPage = () => {
@@ -8,7 +9,7 @@ const ApplicationEditPage = () => {
   return (
     <PageWrapper>
       <ApplicationEditor
-        appId={new URLSearchParams(search).get("applicationId")}
+        appId={new URLSearchParams(search).get(EDIT_PAGE_APPLICATION_ID_PARAM)}
       />
     </PageWrapper>
   );

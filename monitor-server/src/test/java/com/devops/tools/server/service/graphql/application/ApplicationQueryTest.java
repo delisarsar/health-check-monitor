@@ -2,8 +2,10 @@ package com.devops.tools.server.service.graphql.application;
 
 import com.devops.tools.server.repository.ApplicationRepository;
 import com.devops.tools.server.repository.entity.JpaApplication;
+import com.devops.tools.server.service.graphql.application.exception.ApplicationNotFoundException;
 import com.devops.tools.server.service.graphql.exception.InternalServerException;
 import com.devops.tools.server.service.graphql.response.ApplicationDto;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -70,6 +72,12 @@ public class ApplicationQueryTest {
     }
 
     @Test
+    void testGetApplicationsWithIdForApplicationNotFoundException() {
+        when(applicationRepository.findById(1L)).thenReturn(Optional.empty());
+        assertThrows(ApplicationNotFoundException.class, () -> applicationQuery.getApplicationById(1));
+    }
+
+    @Test
     void testGetApplicationsWithIdForDataStoreException() {
         when(applicationRepository.findById(1L)).thenThrow(new DataIntegrityViolationException(""));
         assertThrows(InternalServerException.class, () -> applicationQuery.getApplicationById(1));
@@ -111,7 +119,7 @@ public class ApplicationQueryTest {
     void testGetApplicationsLikeName() {
         final JpaApplication expectedApplication = ApplicationTestDataUtil.getSampleApplication();
 
-        when(applicationRepository.findAllByNameContaining("name")).thenReturn(List.of(expectedApplication));
+        when(applicationRepository.findByNameContainingIgnoreCase("name")).thenReturn(List.of(expectedApplication));
 
         final List<ApplicationDto> actualApplications = applicationQuery.getApplicationsLikeName("name");
         assertThat(actualApplications).hasSize(1);
@@ -119,8 +127,21 @@ public class ApplicationQueryTest {
     }
 
     @Test
+    void testGetApplicationsLikeNameWithBlankInput() {
+        final JpaApplication expectedApplication = ApplicationTestDataUtil.getSampleApplication();
+        final Page page = mock(Page.class);
+        when(page.toList()).thenReturn(List.of(expectedApplication));
+
+        when(applicationRepository.findAll(any(Pageable.class))).thenReturn(page);
+
+        final List<ApplicationDto> actualApplications = applicationQuery.getApplicationsLikeName(StringUtils.EMPTY);
+        assertThat(actualApplications).hasSize(1);
+        verifyApplicationsAreEqual(actualApplications.get(0), expectedApplication);
+    }
+
+    @Test
     void testGetApplicationsLikeNameForDataAccessException() {
-        when(applicationRepository.findAllByNameContaining("name")).thenThrow(new DataIntegrityViolationException(""));
+        when(applicationRepository.findByNameContainingIgnoreCase("name")).thenThrow(new DataIntegrityViolationException(""));
         assertThrows(InternalServerException.class, () -> applicationQuery.getApplicationsLikeName("name"));
     }
 

@@ -19,5 +19,5 @@ export default ContentLoader;
 ContentLoader.propTypes = {
   children: PropTypes.node,
   loading: PropTypes.bool,
-  error: PropTypes.bool,
+  error: PropTypes.object,
 };

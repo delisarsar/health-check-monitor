@@ -5,39 +5,34 @@ import { FormattedMessage } from "react-intl";
 export const APP_NAME_CHARACTER_LIMIT = 255;
 export const APP_ENDPOINT_CHARACTER_LIMIT = 255;
 
-export const APPLICATION_NAME_LABEL = (
+export const HEALTH_CHECK_LABEL = (
   <FormattedMessage
-    id="features.home.edit-application.app-name"
-    defaultMessage={"Application name"}
+    id="overview.health-check"
+    defaultMessage={"Health Check"}
   />
 );
 
-export const APPLICATION_HEALTH_CHECK_ENDPOINT_LABEL = (
-  <FormattedMessage
-    id="features.home.edit-application.app-endpoint"
-    defaultMessage={"Health Check Endpoint"}
-  />
+export const getModalStyle = () => {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+};
+
+export const CREATE_LABEL = (
+  <FormattedMessage id="overview.create" defaultMessage={"Create"} />
 );
 
 export const SAVE_LABEL = (
-  <FormattedMessage
-    id="features.home.edit-application.save"
-    defaultMessage={"Save"}
-  />
-);
-
-export const CANCEL_LABEL = (
-  <FormattedMessage
-    id="features.home.edit-application.save"
-    defaultMessage={"Save"}
-  />
+  <FormattedMessage id="overview.save" defaultMessage={"Save"} />
 );
 
 export const DELETE_LABEL = (
-  <FormattedMessage
-    id="features.home.edit-application.save"
-    defaultMessage={"Save"}
-  />
+  <FormattedMessage id="overview.delete" defaultMessage={"Save"} />
 );
 
 export const CREATE_APPLICATION = gql`

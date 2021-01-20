@@ -18,6 +18,6 @@ test("renders a circular progress when loading is true", () => {
 });
 
 test("renders an error message when it's true", () => {
-  const { getByTestId } = render(<ContentLoader error={true} />);
+  const { getByTestId } = render(<ContentLoader error={"error"} />);
   expect(getByTestId("errorMessage")).toBeInTheDocument();
 });

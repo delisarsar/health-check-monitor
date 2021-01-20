@@ -6,6 +6,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
+import {
+  EDIT_APPLICATION_LABEL,
+  ENDPOINT_APPLICATION_LABEL,
+} from "./constants";
 
 const ApplicationCard = ({
   id,
@@ -18,14 +22,16 @@ const ApplicationCard = ({
     <Card key={id} elevation={2} className={classes.root}>
       <CardContent className={classes.cardContent}>
         <Typography>{appName}</Typography>
-        <Typography>Endpoint: {healthCheckEndpoint}</Typography>
+        <Typography>
+          {ENDPOINT_APPLICATION_LABEL}: {healthCheckEndpoint}
+        </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button
           onClick={() => onEditApplication(id)}
           className={classes.hintActionButton}
         >
-          Edit
+          {EDIT_APPLICATION_LABEL}
         </Button>
       </CardActions>
     </Card>
