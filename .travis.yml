@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - openjdk11
+  - openjdk-ea
+script:
+  - mvn install
+matrix:
+  allow_failures:
+    - jdk: openjdk-ea
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
