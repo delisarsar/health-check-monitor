@@ -65,4 +65,4 @@ jobs:
         run: |
           ibmcloud ks cluster config --cluster $IKS_CLUSTER
           kubectl config current-context
-          helm upgrade "${API_SERVER_CHART_NAME}-dev" .
+          helm install "${API_SERVER_CHART_NAME}-dev" .
