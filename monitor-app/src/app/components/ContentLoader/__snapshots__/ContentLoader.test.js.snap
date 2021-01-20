@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a circular progress when loading is true 1`] = `ShallowWrapper {}`;
+
+exports[`renders correctly the children 1`] = `ShallowWrapper {}`;

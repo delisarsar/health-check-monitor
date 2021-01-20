@@ -1,0 +1,11 @@
+type Query {
+    getApplications(count: Int): [Application]
+    getApplicationsLikeName(name: String): [Application]
+    getApplicationById(appId: Int): Application
+}
+
+type Mutation {
+    createApplication(name: String, endpoint: String): Int
+    updateApplication(name: String, endpoint: String, appId: Int): Boolean
+    deleteApplication(applicationId: Int): Boolean
+}

@@ -1,0 +1,6 @@
+type Application {
+    id: Int
+    name: String
+    healthCheck: HealthCheck
+}
+
