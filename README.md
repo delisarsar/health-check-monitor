@@ -2,6 +2,8 @@
 
 ![Build Status](https://travis-ci.com/delisarsar/health-check-monitor.svg?branch=main)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+![codecov]([codecov](https://codecov.io/gh/delisarsar/health-check-monitor/branch/main/graph/badge.svg?token=RHL8XYZ8AA)](https://codecov.io/gh/delisarsar/health-check-monitor))
+
 [Live Demo](https://jahia.flexudy.com)
 
 This reactor is comprised of the following projects:
@@ -20,3 +22,6 @@ Please refer to the individual modules for more information
 ## CI/CD
 This app uses Travis CI as continous integration platform and a Kubernetes environment for deployment. Please refer to the helm_chart
 directory for the Kubernetes manifest. In addition, the final artificat is the `monitor-server` module.
+
+## Demo
+![Alt text](images/overview.png?raw=true "Overview Demo")
