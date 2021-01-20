@@ -1,0 +1,68 @@
+# This workflow will build a docker container, publish it to IBM Container Registry, and deploy it to IKS when a push is made
+name: Build and Deploy to IKS
+
+on:
+  push:
+    branches:
+      - main
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  GITHUB_SHA: ${{ github.sha }}
+  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+  IBM_CLOUD_REGION: eu-de
+  ICR_NAMESPACE: flexudy-registry
+  REGISTRY_HOSTNAME: de.icr.io
+  API_SERVER_IMAGE_NAME: health-check-monitor
+  IKS_CLUSTER: bp3kqbsf0j2n33n8fg4g
+  DESIRED_VERSION: v3.4.2
+  FRONT_END_DIR: ./monitor-app
+  API_SERVER_DIR: ./monitor-server
+  API_SERVER_CHART_NAME: health-check-monitor
+  CHART_DIR: helm_chart
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK 1.11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+
+      # Package the Spring Boot JAR
+      - name: Build Server JAR with Maven
+        run: |
+          mvn clean install
+      # Download and Install IBM Cloud CLI
+      - name: Install IBM Cloud CLI
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+          curl -sL https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+          ibmcloud --version
+          ibmcloud config --check-version=false
+          ibmcloud plugin install -f kubernetes-service
+          ibmcloud plugin install -f container-registry
+      # Authenticate with IBM Cloud CLI
+      - name: Authenticate with IBM Cloud CLI
+        run: |
+          ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g Default
+          ibmcloud cr region-set "${IBM_CLOUD_REGION}"
+          ibmcloud cr login
+      # Build and Push the Docker image to IBM Container Registry
+      - name: Build REST API with Docker
+        working-directory: ./monitor-server
+        run: |
+          ibmcloud cr build -t "${REGISTRY_HOSTNAME}/${ICR_NAMESPACE}/${API_SERVER_IMAGE_NAME}:${GITHUB_SHA}" .
+
+      - name: Deploy API Server to IKS
+        working-directory: ./helm_chart
+        run: |
+          ibmcloud ks cluster config --cluster $IKS_CLUSTER
+          kubectl config current-context
+          helm upgrade "${API_SERVER_CHART_NAME}-dev" .

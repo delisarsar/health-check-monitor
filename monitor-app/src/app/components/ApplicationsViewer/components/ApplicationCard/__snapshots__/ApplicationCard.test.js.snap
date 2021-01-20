@@ -1,3 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `ShallowWrapper {}`;
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation2 MuiPaper-rounded"
+  >
+    <div
+      class="MuiCardContent-root makeStyles-cardContent-4"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1"
+        data-testid="card-app-name"
+      >
+        name
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body1"
+        data-testid="card-endpoint"
+      >
+        Endpoint
+        : 
+        endpoint
+      </p>
+    </div>
+    <div
+      class="MuiCardActions-root makeStyles-cardActions-3 MuiCardActions-spacing"
+    >
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text"
+        data-testid="edit-button"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Edit
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;

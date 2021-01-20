@@ -1,5 +1,7 @@
 {
+  "app.error": "An error occured on our end",
   "overview.create_button": "+ Create",
+  "overview.create": "Create",
   "overview.no-application-found": "No application found",
   "overview.application-name": "Application Name",
   "overview.filter-by-name": "Filter by name",

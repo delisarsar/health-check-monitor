@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ApplicationEditPage /> renders correctly 1`] = `
+<div>
+  <div
+    class="makeStyles-root-1"
+  >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-appBar-2 MuiPaper-elevation4"
+    >
+      <div
+        class="MuiBox-root MuiBox-root-4"
+      >
+        <img
+          alt="Logo"
+          height="49"
+          src="logo.png"
+          width="108"
+        />
+        ;
+      </div>
+    </header>
+  </div>
+  <div
+    class="MuiBox-root MuiBox-root-5"
+  >
+    <div
+      class="makeStyles-paper-7"
+      style="top: 50%; left: 50%; transform: translate(-50%, -50%);"
+    >
+      <form
+        autocomplete="off"
+        class="makeStyles-root-6"
+        novalidate=""
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+            data-shrink="false"
+          >
+            Application Name
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              maxlength="255"
+              placeholder="Name your application"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-10 MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="PrivateNotchedOutline-legendLabelled-12"
+              >
+                <span>
+                  Application Name
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-14"
+        >
+          <div
+            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+              data-shrink="false"
+            >
+              Health Check
+            </label>
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                maxlength="255"
+                placeholder="Health Check Endpoint"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-10 MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legendLabelled-12"
+                >
+                  <span>
+                    Health Check
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-actionButtonsGrid-9 MuiGrid-container MuiGrid-spacing-xs-3"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-actionButton-8 Mui-disabled Mui-disabled"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Create
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -48,15 +48,16 @@ const ApplicationsViewer = () => {
 
   useEffect(() => {
     refetch();
-  }, [history, refetch]);
+  }, [history, refetch, data]);
 
   return (
-    <ContentLoader loading={loading} error={error}>
+    <ContentLoader loading={loading}>
       <div>
         <Grid container spacing={2}>
           <Grid item>
             <Button
               className={classes.createButton}
+              data-testid="create-application"
               variant="contained"
               onClick={redirectToCreateAppPage}
             >
@@ -79,7 +80,7 @@ const ApplicationsViewer = () => {
         </Grid>
         {isEmpty(data) || isEmpty(data.getApplicationsLikeName) ? (
           <Typography
-            data-test-id="noAppFound"
+            data-testid="overview-no-applications-found"
             className={classes.resultsTitle}
             variant="h5"
           >
@@ -97,7 +98,7 @@ const ApplicationsViewer = () => {
                     id={app.id}
                     appName={app.name}
                     healthCheckEndpoint={app.healthCheck.endpoint}
-                    onEditApplication={redirectToEditAppPage}
+                    onChange={redirectToEditAppPage}
                   />
                 </Grid>
               ))}

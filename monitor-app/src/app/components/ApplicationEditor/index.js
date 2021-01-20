@@ -66,7 +66,7 @@ const ApplicationEditor = ({ appId }) => {
     getApplicationById,
     {
       loading,
-      getApplicationByError,
+      getApplicationByIdError,
       data: { getApplicationById: appByIdData } = {},
     },
   ] = useLazyQuery(GET_APPLICATION_BY_ID);
@@ -103,7 +103,7 @@ const ApplicationEditor = ({ appId }) => {
     createApplicationError ||
     deleteApplicationError ||
     updateApplicationError ||
-    getApplicationByError;
+    getApplicationByIdError;
 
   return (
     <ContentLoader loading={requestProcessing} error={requestErrored}>
@@ -111,6 +111,7 @@ const ApplicationEditor = ({ appId }) => {
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             label={APPLICATION_NAME_LABEL}
+            data-testid="application-name-input"
             variant="outlined"
             size="small"
             fullWidth
@@ -127,6 +128,7 @@ const ApplicationEditor = ({ appId }) => {
           <Box pt={2}>
             <TextField
               label={HEALTH_CHECK_LABEL}
+              data-testid="endpoint-input"
               variant="outlined"
               size="small"
               fullWidth
@@ -145,6 +147,7 @@ const ApplicationEditor = ({ appId }) => {
             <Grid item>
               <Button
                 variant="contained"
+                data-testid="save-button"
                 className={classes.actionButton}
                 onClick={
                   isNil(appInfo.appId)
@@ -174,6 +177,7 @@ const ApplicationEditor = ({ appId }) => {
                 <Button
                   variant="contained"
                   color="secondary"
+                  data-testid="delete-button"
                   onClick={() =>
                     deleteApplication({
                       variables: {

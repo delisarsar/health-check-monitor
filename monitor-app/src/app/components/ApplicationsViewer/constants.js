@@ -3,10 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { gql } from "apollo-boost";
 
 export const CREATE_APPLICATION_LABEL = (
-  <FormattedMessage
-    id="features.home.create-application"
-    defaultMessage={"+ Create"}
-  />
+  <FormattedMessage id="overview.create_button" defaultMessage={"+ Create"} />
 );
 
 export const FILTER_BY_NAME_LABEL = (

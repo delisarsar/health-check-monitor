@@ -1,13 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import PageWrapper from ".";
 import { Typography } from "@material-ui/core";
 
-test("renders correctly", () => {
-  const wrapper = shallow(
-    <PageWrapper>
-      <Typography>learn react</Typography>
-    </PageWrapper>
-  );
-  expect(wrapper).toMatchSnapshot();
+describe("<PageWrapper />", () => {
+  test("renders correctly", () => {
+    const { container } = render(
+      <PageWrapper>
+        <Typography>learn react</Typography>
+      </PageWrapper>
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

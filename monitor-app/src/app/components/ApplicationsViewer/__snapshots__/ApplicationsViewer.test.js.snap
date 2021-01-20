@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ApplicationsViewer /> renders a no applications label when it's empty 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-createButton-20"
+          data-testid="create-application"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            + Create
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+            data-shrink="false"
+          >
+            Application Name
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              placeholder="Filter by name"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-27 MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="PrivateNotchedOutline-legendLabelled-29"
+              >
+                <span>
+                  Application Name
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h5
+      class="MuiTypography-root makeStyles-resultsTitle-21 MuiTypography-h5"
+      data-testid="overview-no-applications-found"
+    >
+      No application found
+    </h5>
+  </div>
+</div>
+`;
+
+exports[`<ApplicationsViewer /> renders correctly with a sample application 1`] = `
+<div>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-createButton-1"
+          data-testid="create-application"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            + Create
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+            data-shrink="false"
+          >
+            Application Name
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              placeholder="Filter by name"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="PrivateNotchedOutline-legendLabelled-14"
+              >
+                <span>
+                  Application Name
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h5
+      class="MuiTypography-root makeStyles-resultsTitle-2 MuiTypography-h5"
+    >
+      Applications (Health Checks)
+    </h5>
+    <div
+      class="MuiGrid-root makeStyles-appsGrid-3 MuiGrid-container MuiGrid-spacing-xs-2"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item"
+      >
+        <div
+          class="MuiPaper-root MuiCard-root makeStyles-root-16 MuiPaper-elevation2 MuiPaper-rounded"
+          data-testid="application-card-1"
+        >
+          <div
+            class="MuiCardContent-root makeStyles-cardContent-19"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1"
+              data-testid="card-app-name"
+            >
+              Jahia Cloud
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1"
+              data-testid="card-endpoint"
+            >
+              Endpoint
+              : 
+              https://jahia.com
+            </p>
+          </div>
+          <div
+            class="MuiCardActions-root makeStyles-cardActions-18 MuiCardActions-spacing"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text"
+              data-testid="edit-button"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Edit
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
