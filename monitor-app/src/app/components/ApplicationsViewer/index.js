@@ -39,12 +39,9 @@ const ApplicationsViewer = () => {
     );
   };
 
-  const { loading, error, data, refetch } = useQuery(
-    GET_APPLICATIONS_LIKE_NAME,
-    {
-      variables: { name: searchValue },
-    }
-  );
+  const { loading, data, refetch } = useQuery(GET_APPLICATIONS_LIKE_NAME, {
+    variables: { name: searchValue },
+  });
 
   useEffect(() => {
     refetch();
